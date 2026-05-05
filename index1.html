@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formación Deliverect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sb:#1B2A35;--sb-h:#243342;--sb-a:#2C3F4F;--sb-b:rgba(255,255,255,0.07);
+  --green:#00C2A0;--gd:#009E84;--gl:rgba(0,194,160,0.1);--gb:rgba(0,194,160,0.25);
+  --bg:#F0F2F5;--card:#fff;--cb:#E5E7EB;
+  --t1:#111827;--t2:#4B5563;--t3:#9CA3AF;
+  --blue:#3B82F6;--orange:#F59E0B;--red:#EF4444;
+  --r:8px;--rl:12px;--rxl:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;font-size:14px;background:var(--bg);color:var(--t1);min-height:100vh}
+.screen{display:none;min-height:100vh}
+.screen.active{display:flex;flex-direction:column}
+
+/* ── TOPBAR ── */
+.topbar{height:54px;background:var(--sb);display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0;border-bottom:1px solid var(--sb-b);position:sticky;top:0;z-index:100}
+.tl{display:flex;align-items:center;gap:10px}
+.tr{display:flex;align-items:center;gap:10px}
+.up{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:4px 12px;font-size:12px;color:rgba(255,255,255,0.75)}
+.ud{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.pp{background:rgba(0,194,160,0.15);border:1px solid var(--gb);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--green);font-weight:700}
+
+/* ── REGISTER ── */
+#sr{align-items:center;justify-content:center;background:var(--sb);padding:40px 20px;position:relative}
+#sr::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(0,194,160,0.14) 0%,transparent 70%);pointer-events:none}
+.rc{background:#1F3040;border:1px solid rgba(255,255,255,0.09);border-radius:var(--rxl);padding:40px 44px;width:100%;max-width:420px;position:relative;z-index:1}
+.rl{margin-bottom:26px;display:flex;justify-content:center}
+.rc h1{font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
+.rc>p{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:26px;line-height:1.6}
+.fl{display:block;font-size:11px;font-weight:600;color:rgba(255,255,255,0.4);margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase}
+.fi{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.11);border-radius:var(--r);color:#fff;padding:10px 13px;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;margin-bottom:16px}
+.fi:focus{border-color:var(--green)}
+.fi::placeholder{color:rgba(255,255,255,0.22)}
+.bs{width:100%;background:var(--green);border:none;border-radius:var(--r);color:#fff;font-size:14px;font-weight:600;font-family:'Inter',sans-serif;padding:12px;cursor:pointer;transition:background .15s}
+.bs:hover{background:var(--gd)}
+.rn{margin-top:14px;font-size:11px;color:rgba(255,255,255,0.28);text-align:center}
+
+/* ── MAIN ── */
+#sm{flex-direction:column}
+.mw{display:flex;flex:1;overflow:hidden;height:calc(100vh - 54px)}
+.sb{width:210px;flex-shrink:0;background:var(--sb);display:flex;flex-direction:column;border-right:1px solid var(--sb-b);overflow-y:auto}
+.sbh{padding:14px 12px 10px;border-bottom:1px solid var(--sb-b)}
+.sbhl{font-size:10px;font-weight:600;color:rgba(255,255,255,0.3);letter-spacing:.7px;text-transform:uppercase;margin-bottom:8px}
+.pt{height:3px;background:rgba(255,255,255,0.09);border-radius:2px;overflow:hidden;margin-bottom:4px}
+.pf{height:3px;background:var(--green);border-radius:2px;transition:width .5s}
+.pl{font-size:11px;color:rgba(255,255,255,0.3);display:flex;justify-content:space-between}
+.pl span{color:var(--green);font-weight:600}
+.sbn{flex:1;padding:6px 7px}
+.ni{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:var(--r);cursor:pointer;transition:background .12s;margin-bottom:1px}
+.ni:hover{background:var(--sb-h)}
+.ni.active{background:var(--sb-a)}
+.nic{width:26px;height:26px;border-radius:6px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ni.active .nic{background:rgba(0,194,160,0.18)}
+.nic svg{width:13px;height:13px;fill:rgba(255,255,255,0.35)}
+.ni.active .nic svg{fill:var(--green)}
+.nil{flex:1;min-width:0}
+.nit{font-size:12px;font-weight:500;color:rgba(255,255,255,0.45);display:block;line-height:1.3}
+.ni.active .nit{color:#fff}
+.nik{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.13);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px}
+.nik.done{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+
+/* ── CONTENT ── */
+.cw{flex:1;overflow-y:auto;padding:32px 40px;display:flex;justify-content:center}
+.ci{width:100%;max-width:820px}
+
+.ey{display:inline-flex;align-items:center;gap:6px;background:var(--gl);border:1px solid var(--gb);border-radius:20px;padding:3px 11px;font-size:11px;color:var(--green);font-weight:600;margin-bottom:11px}
+.mt{font-size:22px;font-weight:700;color:var(--t1);letter-spacing:-.3px;margin-bottom:3px}
+.ms{font-size:13px;color:var(--t2);margin-bottom:18px}
+.sd{display:flex;gap:5px;margin-bottom:16px;align-items:center}
+.dot{height:3px;width:22px;border-radius:2px;background:#D1D5DB;cursor:pointer;transition:all .2s}
+.dot.active{background:var(--green);width:34px}
+.dot.done{background:rgba(0,194,160,0.45)}
+
+.lc{background:var(--card);border:1px solid var(--cb);border-radius:var(--rl);overflow:hidden;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.lch{padding:15px 20px 12px;border-bottom:1px solid var(--cb)}
+.lch h3{font-size:15px;font-weight:600;color:var(--t1)}
+.lcb{padding:20px}
+.lcb p{color:var(--t2);font-size:13px;line-height:1.75;margin-bottom:12px}
+.lcb p:last-child{margin-bottom:0}
+
+/* Images */
+.hi{width:100%;border-radius:var(--r);border:1px solid var(--cb);display:block;margin:12px 0;background:#F9FAFB;max-height:480px;object-fit:contain}
+.hic{font-size:11px;color:var(--t3);text-align:center;margin-top:-6px;margin-bottom:12px;font-style:italic}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.ig img{width:100%;border-radius:var(--r);border:1px solid var(--cb);display:block;background:#F9FAFB}
+
+/* Video */
+.vid-wrap{margin:14px 0;border-radius:var(--r);overflow:hidden;border:1px solid var(--cb);background:#000;position:relative;padding-top:56.25%}
+.vid-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.vid-label{font-size:11px;color:var(--t3);text-align:center;margin-top:4px;margin-bottom:12px;font-style:italic}
+
+/* Callouts */
+.ca{border-left:3px solid var(--green);background:#F0FDF9;padding:10px 14px;border-radius:0 var(--r) var(--r) 0;margin:12px 0;font-size:13px;color:#065F46;line-height:1.6}
+.ca.w{border-color:var(--orange);background:#FFFBEB;color:#92400E}
+.ca.d{border-color:var(--red);background:#FEF2F2;color:#991B1B}
+.ca strong{font-weight:600}
+
+/* Steps */
+.sl{list-style:none;counter-reset:s;margin:10px 0}
+.sl li{counter-increment:s;display:flex;gap:11px;margin-bottom:11px;font-size:13px;color:var(--t2);line-height:1.65}
+.sl li::before{content:counter(s);min-width:20px;height:20px;background:var(--gl);border:1px solid var(--gb);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--green);flex-shrink:0;margin-top:2px}
+
+/* Tags */
+.tg{display:inline-flex;align-items:center;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.tgg{background:#F0FDF9;color:#065F46;border:1px solid #A7F3D0}
+.tgo{background:#FFFBEB;color:#92400E;border:1px solid #FCD34D}
+.tgr{background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
+.tgb{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
+
+/* Help link */
+.hl{display:inline-flex;align-items:center;gap:5px;color:var(--green);font-size:12px;font-weight:500;text-decoration:none;padding:4px 10px;border:1px solid var(--gb);border-radius:20px;background:var(--gl);transition:all .15s;margin:2px 3px 2px 0}
+.hl:hover{background:rgba(0,194,160,0.2)}
+.hl svg{width:11px;height:11px;fill:none;stroke:var(--green);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hls{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0}
+
+/* CTA interactive box */
+.cta{background:linear-gradient(135deg,#1B2A35 0%,#243342 100%);border-radius:var(--rl);padding:18px 20px;margin:14px 0;display:flex;align-items:flex-start;gap:14px}
+.cta-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.cta-body h4{font-size:14px;font-weight:600;color:#fff;margin-bottom:5px}
+.cta-body p{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:10px}
+.cta-btn{display:inline-flex;align-items:center;gap:5px;background:var(--green);color:#fff;border:none;border-radius:var(--r);padding:7px 14px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;text-decoration:none;transition:background .15s}
+.cta-btn:hover{background:var(--gd)}
+.cta-btn svg{width:11px;height:11px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Grid cards */
+.gc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.gcard{background:#F9FAFB;border:1px solid var(--cb);border-radius:var(--r);padding:12px}
+.gcard .gn{font-size:19px;font-weight:700;color:var(--t1)}
+.gcard .gl{font-size:11px;color:var(--t3);margin-top:2px}
+.gcard .gt{font-size:11px;color:var(--green);margin-top:2px;font-weight:600}
+
+/* Busy btns */
+.br{display:flex;gap:8px;margin:12px 0}
+.bb{flex:1;padding:11px;border-radius:var(--r);font-size:12px;font-weight:600;cursor:default;text-align:center;line-height:1.4}
+.bbo{background:#FFFBEB;color:#92400E;border:1px solid #FCD34D}
+.bbr{background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
+.bbg{background:#F0FDF9;color:#065F46;border:1px solid #A7F3D0}
+
+/* Snooze rows */
+.srow{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#F9FAFB;border:1px solid var(--cb);border-radius:var(--r);margin-bottom:6px;font-size:13px;color:var(--t2)}
+
+/* Quiz */
+.qb{background:#F9FAFB;border:1px solid var(--cb);border-radius:var(--rl);padding:18px}
+.qq{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:14px;line-height:1.5}
+.qo{display:block;width:100%;text-align:left;padding:10px 14px;border-radius:var(--r);border:1px solid #E5E7EB;background:#fff;font-size:13px;color:var(--t1);cursor:pointer;margin-bottom:7px;font-family:'Inter',sans-serif;transition:all .13s}
+.qo:hover:not(:disabled){border-color:var(--green);background:#F0FDF9}
+.qo.ok{border-color:var(--green)!important;background:#F0FDF9!important;color:#065F46!important;font-weight:500}
+.qo.ko{border-color:var(--red)!important;background:#FEF2F2!important;color:#991B1B!important}
+.qf{padding:10px 13px;border-radius:var(--r);font-size:12px;line-height:1.5;margin-top:4px}
+.qf.ok{background:#F0FDF9;color:#065F46;border:1px solid #A7F3D0}
+.qf.ko{background:#FEF2F2;color:#991B1B;border:1px solid #FECACA}
+
+/* Nav */
+.lcn{display:flex;align-items:center;justify-content:space-between;padding:13px 20px;border-top:1px solid var(--cb);background:#FAFAFA}
+.bn{padding:8px 16px;border-radius:var(--r);border:1px solid #D1D5DB;background:#fff;color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s}
+.bn:hover{background:#F9FAFB}
+.bn:disabled{opacity:.35;cursor:default}
+.bf{padding:8px 18px;border-radius:var(--r);background:var(--green);border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .12s}
+.bf:hover{background:var(--gd)}
+
+/* CERT */
+#sc{align-items:center;justify-content:center;background:var(--bg);padding:40px 20px}
+.co{width:100%;max-width:660px}
+.ct{text-align:center;margin-bottom:22px}
+.ct h1{font-size:22px;font-weight:700;color:var(--t1)}
+.ct p{font-size:13px;color:var(--t2);margin-top:4px}
+.cc{background:#fff;border:1px solid var(--cb);border-radius:var(--rxl);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.cbar{height:4px;background:linear-gradient(90deg,var(--green),#0099FF)}
+.cbody{padding:36px 44px;text-align:center}
+.cst{width:62px;height:62px;border-radius:50%;background:var(--gl);border:2px solid var(--gb);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:26px}
+.csup{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--t3);margin-bottom:4px}
+.cbody h3{font-size:17px;font-weight:700;color:var(--t1);margin-bottom:4px}
+.cname{font-size:25px;font-weight:700;color:var(--green);margin:6px 0 10px}
+.cbody>p{font-size:13px;color:var(--t2);line-height:1.7;max-width:360px;margin:0 auto 14px}
+.cmods{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:12px 0 16px}
+.cbadge{background:var(--gl);border:1px solid var(--gb);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--green);font-weight:600}
+.cdate{font-size:11px;color:var(--t3)}
+.cact{display:flex;gap:8px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.cao{padding:8px 18px;border-radius:var(--r);border:1px solid #D1D5DB;background:#fff;color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif}
+.cao:hover{background:#F9FAFB}
+.cap{padding:8px 18px;border-radius:var(--r);background:var(--green);border:none;color:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+.cap:hover{background:var(--gd)}
+
+@media print{.topbar,.sb,.lcn,.cact,.ct{display:none!important}body,#sc{background:#fff}.cc{box-shadow:none;border:1px solid #ccc}}
+</style>
+</head>
+<body>
+
+<!-- REGISTER -->
+<div id="sr" class="screen active">
+  <div class="rc">
+    <div class="rl">
+      <svg viewBox="0 0 160 36" fill="none" height="34" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="#00C2A0"/>
+        <path d="M9 18C9 13 13 9 18 9C20.4 9 22.5 9.9 24.1 11.4L21.6 13.9C20.6 12.9 19.4 12.4 18 12.4C14.9 12.4 12.4 14.9 12.4 18C12.4 21.1 14.9 23.6 18 23.6C20.3 23.6 22.3 22.2 23 20H18V17H27C27.1 17.7 27.2 18.4 27.2 19C27.2 23.5 23.5 27 18.5 27C13.4 27 9 23.1 9 18Z" fill="white"/>
+        <text x="44" y="25" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="18" fill="white" letter-spacing="-0.5">deliver<tspan fill="#00C2A0">ect</tspan></text>
+      </svg>
+    </div>
+    <h1>Bienvenido a la formación</h1>
+    <p>Introduce tu nombre para comenzar. Al completar todos los módulos recibirás un certificado oficial de Deliverect.</p>
+    <label class="fl" for="rn">Nombre completo</label>
+    <input class="fi" id="rn" type="text" placeholder="Ej: María García" autocomplete="name">
+    <label class="fl" for="re">Email</label>
+    <input class="fi" id="re" type="email" placeholder="tu@email.com" autocomplete="email">
+    <button class="bs" onclick="startTraining()">Comenzar formación →</button>
+    <div class="rn">Tu progreso se guarda automáticamente en este navegador</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div id="sm" class="screen">
+  <nav class="topbar">
+    <div class="tl">
+      <svg viewBox="0 0 130 30" fill="none" height="26" xmlns="http://www.w3.org/2000/svg">
+        <rect width="30" height="30" rx="7" fill="#00C2A0"/>
+        <path d="M7.5 15C7.5 10.8 10.8 7.5 15 7.5C17 7.5 18.8 8.3 20.1 9.5L18 11.6C17.2 10.8 16.2 10.4 15 10.4C12.4 10.4 10.4 12.4 10.4 15C10.4 17.6 12.4 19.6 15 19.6C17 19.6 18.7 18.4 19.2 16.7H15V14.2H22.5C22.6 14.8 22.6 15.4 22.6 16C22.6 19.6 19.6 22.5 15.5 22.5C11.3 22.5 7.5 19.1 7.5 15Z" fill="white"/>
+        <text x="36" y="21" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="15" fill="white" letter-spacing="-0.4">deliver<tspan fill="#00C2A0">ect</tspan></text>
+      </svg>
+    </div>
+    <div class="tr">
+      <div class="up"><div class="ud"></div><span id="tbn">—</span></div>
+      <div class="pp" id="tpp">0 / 8</div>
+    </div>
+  </nav>
+  <div class="mw">
+    <aside class="sb">
+      <div class="sbh">
+        <div class="sbhl">Progreso</div>
+        <div class="pt"><div class="pf" id="pf" style="width:0%"></div></div>
+        <div class="pl">Completado <span id="ppct">0%</span></div>
+      </div>
+      <nav class="sbn" id="sbn"></nav>
+    </aside>
+    <div class="cw"><div class="ci" id="ci"></div></div>
+  </div>
+</div>
+
+<!-- CERT -->
+<div id="sc" class="screen">
+  <div class="co">
+    <div class="ct"><h1>🎉 ¡Formación completada!</h1><p>Has superado todos los módulos. Aquí tienes tu certificado.</p></div>
+    <div class="cc">
+      <div class="cbar"></div>
+      <div class="cbody">
+        <div class="cst">🏆</div>
+        <div class="csup">Certificado de completación</div>
+        <h3>Formación oficial Deliverect</h3>
+        <div class="cname" id="cn">—</div>
+        <p>Ha completado satisfactoriamente el programa de formación en la plataforma Deliverect, dominando las funciones esenciales para la gestión operativa del negocio.</p>
+        <div class="cmods" id="cm"></div>
+        <div class="cdate" id="cd"></div>
+      </div>
+    </div>
+    <div class="cact">
+      <button class="cao" onclick="window.print()">🖨 Imprimir / PDF</button>
+      <button class="cap" onclick="goS('sm')">← Volver al curso</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── ICONS ──
+const IC={
+  home:`<svg viewBox="0 0 16 16"><path d="M8 1L1 7v8h5V10h4v5h5V7L8 1z" fill="currentColor"/></svg>`,
+  loc:`<svg viewBox="0 0 16 16"><path d="M8 1C5.2 1 3 3.2 3 6c0 4 5 9 5 9s5-5 5-9c0-2.8-2.2-5-5-5zm0 7a2 2 0 110-4 2 2 0 010 4z" fill="currentColor"/></svg>`,
+  busy:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5v3.5l2.5 1.5" stroke-linecap="round"/></svg>`,
+  snz:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 6h4L5 10h4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="8" r="6.5"/></svg>`,
+  hrs:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M5 1.5v2M11 1.5v2M2 6.5h12" stroke-linecap="round"/></svg>`,
+  menu:`<svg viewBox="0 0 16 16"><rect x="2" y="2.5" width="12" height="2.5" rx="1" fill="currentColor"/><rect x="2" y="6.75" width="12" height="2.5" rx="1" fill="currentColor"/><rect x="2" y="11" width="8" height="2.5" rx="1" fill="currentColor"/></svg>`,
+  ana:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12l3.5-4 3 3L14 4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  dma:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4.5" y="1" width="7" height="14" rx="2"/><circle cx="8" cy="12" r=".8" fill="currentColor" stroke="none"/></svg>`,
+};
+
+// ── IMG ──
+const I={
+  intro:`https://downloads.intercomcdn.com/i/o/847410920/d7e994692ddedbc71ed779e8/proc_8447408_1.png`,
+  intro2:`https://downloads.intercomcdn.com/i/o/847423014/e184a3ba26a139b7b1f724d1/proc_8447408_5.png`,
+  loc1:`https://downloads.intercomcdn.com/i/o/1152900785/1e22d814b2f65f7b95775e55/proc_7978972_1_en.png`,
+  loc2:`https://downloads.intercomcdn.com/i/o/1152900856/837c8012784c646af2813c46/proc_7978972_2_en.png`,
+  loc3:`https://downloads.intercomcdn.com/i/o/1152901046/11522cd2cea12edc5024bcab/proc_7978972_3_en.png`,
+  bm1:`https://downloads.intercomcdn.com/i/o/1152900968/9b3faaca659369d35a64e86b/proc_7978972_4_en.png`,
+  sn1:`https://downloads.intercomcdn.com/i/o/785176127/33eca2854b1c44641dcc62db/proc_360016412378_1_en.png`,
+  sn2:`https://downloads.intercomcdn.com/i/o/785175882/260b27225359c025d5697bc5/proc_360016412378_2_en.png`,
+  sn3:`https://downloads.intercomcdn.com/i/o/785175745/d2b5e0caf8f0807d994484ba/proc_360016412378_3_en.png`,
+  sn4:`https://downloads.intercomcdn.com/i/o/785175711/383bf59c30bf1c22dbf543bf/proc_360016412378_4_en.png`,
+  sn5:`https://downloads.intercomcdn.com/i/o/785175671/34d73db4c27b757aa7ac0e33/proc_360016412378_5_en.png`,
+  oh1:`https://downloads.intercomcdn.com/i/o/aurjyqxf/1464833250/a1cec264a9fa265706e559861e0f/proc_7978981_1_en.png`,
+  oh2:`https://downloads.intercomcdn.com/i/o/aurjyqxf/1464841404/fb37385f1e7b5d7944c5d22b2fc5/proc_7978981_2_en.png`,
+  oh3:`https://downloads.intercomcdn.com/i/o/aurjyqxf/1464845378/cdfc20bbfdf8579422fcd9477dac/proc_7978981_3_en.png`,
+  oh4:`https://downloads.intercomcdn.com/i/o/aurjyqxf/1465119443/9097eabbb03b25a1afada4413a65/proc_7978981_4_en.png`,
+  oh5:`https://downloads.intercomcdn.com/i/o/aurjyqxf/1466442214/b273bc21f4b3f3e3bdf6e97364f7/proc_7978981_5_en.png`,
+  mn1:`https://downloads.intercomcdn.com/i/o/1170851878/7d4f5ec653f2008a8d2dc311/proc_7978980_1_en.png`,
+  mn2:`https://downloads.intercomcdn.com/i/o/1170851987/6ff15d20847f8a8dec76bfa1/proc_7978980_2_en.png`,
+  mn3:`https://downloads.intercomcdn.com/i/o/1170827684/92b2ce6fd01d73acb03b8077/proc_7978980_2_en.png`,
+  mn4:`https://downloads.intercomcdn.com/i/o/1170836509/2d5e27b718ee07a99d875210/proc_7978980_3_en.png`,
+  mn5:`https://downloads.intercomcdn.com/i/o/1170851325/7118af89c5db4ecb4b45c801/proc_7978980_4_en.png`,
+  mc1:`https://downloads.intercomcdn.com/i/o/aurjyqxf/1668529620/33d2c08e70b1234fbaba03747752/proc_7978996_1_en.png`,
+  mc2:`https://downloads.intercomcdn.com/i/o/aurjyqxf/1668530922/19c157f1b0e4ccf42c5881b80921/proc_7978996_4_en.png`,
+  an1:`https://downloads.intercomcdn.com/i/o/819830526/d452b5706310e4a9879a7ec4/proc_4405816257425_2_en.png`,
+  an2:`https://downloads.intercomcdn.com/i/o/819830637/7b8f2f99d9edb52d10354680/proc_4405816257425_3_en.png`,
+  an3:`https://downloads.intercomcdn.com/i/o/819830749/ccb5fc60729e6911219e85e0/proc_4405816257425_4_en.png`,
+  an4:`https://downloads.intercomcdn.com/i/o/819832570/1887075a38e52f7ff669e8a3/proc_4405816257425_6_en.png`,
+  an5:`https://downloads.intercomcdn.com/i/o/762447390/c048b1b6fa03f6ff67f36864/proc_4405868642961_2_en.png`,
+  dm1:`https://downloads.intercomcdn.com/i/o/1190837750/f9e336bc95eff13306f1694f/proc_7979073_7_en.png`,
+  dm2:`https://downloads.intercomcdn.com/i/o/1190836646/1c8007ace85fa2a3263f245f/proc_7979073_1_en.png`,
+  dm3:`https://downloads.intercomcdn.com/i/o/1173712630/89a870cbfae08ad462aea30a/proc_7979072_1_en.png`,
+  dm4:`https://downloads.intercomcdn.com/i/o/1173714451/c706b93df88a1e2ef31d3dc4/proc_7979072_3_en.png`,
+  dm5:`https://downloads.intercomcdn.com/i/o/1173714648/280f73782c278b8e383c58ef/proc_7979072_4_en.png`,
+};
+
+function im(src,cap){return`<img class="hi" src="${src}" alt="${cap||''}" loading="lazy" onerror="this.style.display='none'">${cap?`<div class="hic">${cap}</div>`:''}`;}
+function yt(id,cap){return`<div class="vid-wrap"><iframe src="https://www.youtube.com/embed/${id}" allowfullscreen loading="lazy"></iframe></div>${cap?`<div class="vid-label">▶ ${cap}</div>`:''}`;}
+function link(url,label){return`<a class="hl" href="${url}" target="_blank" rel="noopener"><svg viewBox="0 0 12 12"><path d="M7 1h4v4M11 1L5 7M4 2H2a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1V8"/></svg>${label}</a>`;}
+function links(...arr){return`<div class="hls">${arr.map(([u,l])=>link(u,l)).join('')}</div>`;}
+function cta(icon,title,desc,btnLabel,btnUrl){return`<div class="cta"><div class="cta-icon">${icon}</div><div class="cta-body"><h4>${title}</h4><p>${desc}</p><a class="cta-btn" href="${btnUrl}" target="_blank" rel="noopener"><svg viewBox="0 0 12 12"><path d="M7 1h4v4M11 1L5 7M4 2H2a1 1 0 00-1 1v7a1 1 0 001 1h7a1 1 0 001-1V8"/></svg>${btnLabel}</a></div></div>`;}
+
+// ── MODULES ──
+const M=[
+{id:0,ic:'home',t:'Introducción',s:'El panel de Deliverect',
+ ls:[
+  {t:'¿Qué es Deliverect?',
+   b:`<p>Deliverect es la plataforma que centraliza la gestión de todos tus canales de delivery (Glovo, Uber Eats, Just Eat…) en un único panel, conectado directamente con tu TPV.</p>
+   ${im(I.intro,'Vista general del panel web de Deliverect — menús, locales y pedidos desde un solo lugar')}
+   <p>Elimina la necesidad de múltiples tablets y la transcripción manual de pedidos. Todo fluye directamente a la cocina en tiempo real.</p>
+   <div class="ca"><strong>Dos formas de acceder:</strong> El panel web completo en <strong>frontend.deliverect.com</strong>, o la app <strong>DMA</strong> (Delivery Manager App) en tablet para las operaciones del día a día.</div>
+   ${cta('🚀','Accede ahora al panel','Abre Deliverect en otra pestaña y explora las secciones del menú lateral mientras sigues la formación.','Abrir Deliverect','https://frontend.deliverect.com')}
+   ${links(['https://help.deliverect.com/en/articles/8473135-get-started-3-learn-how-to-use-deliverect','Guía de inicio rápido'],['https://help.deliverect.com/en/articles/9220097-tutorial-videos','Todos los vídeos tutoriales'])}`
+  },
+  {t:'Las secciones del panel',
+   b:`<ul class="sl">
+    <li><strong>Orders</strong> — Pedidos en tiempo real de todos los canales con cambio de estado automático.</li>
+    <li><strong>Locations</strong> — Control de locales: abrir, cerrar, busy mode y horarios.</li>
+    <li><strong>Menus</strong> — Crear, editar y publicar cartas en los canales.</li>
+    <li><strong>Analytics</strong> — Ventas, rendimiento por canal, productos top y reseñas.</li>
+    <li><strong>Operations</strong> — Historial completo: sincronizaciones, publicaciones, snooze y alertas.</li>
+   </ul>
+   ${im(I.intro2,'Envío de un pedido de prueba desde el panel web — confirma que todo está conectado')}
+   <div class="ca w"><strong>Importante:</strong> Deliverect no gestiona los pagos. Cada plataforma de delivery cobra y liquida de forma independiente.</div>
+   ${links(['https://help.deliverect.com/en/collections/2976647-restaurants-and-retail','Centro de ayuda completo'],['https://help.deliverect.com/en/articles/7978926-contact-us','Contactar con soporte 24/7'])}`
+  },
+  {quiz:true,t:'Quiz — Introducción',q:'¿Cuál es la función principal de Deliverect?',
+   opts:['Procesar pagos de los canales de delivery','Centralizar todos los canales de delivery conectándolos con el TPV','Crear la carta digital del restaurante','Gestionar las reservas de mesas'],
+   correct:1,fb:'✓ Correcto. Deliverect actúa como hub central que conecta todos los canales de delivery con el TPV, eliminando la gestión manual pedido a pedido.'}
+ ]
+},
+{id:1,ic:'loc',t:'Locations',s:'Gestión de locales y canales',
+ ls:[
+  {t:'Vista general de tus locales',
+   b:`<p>La sección <strong>Locations</strong> muestra todos tus establecimientos con los canales conectados y su estado en tiempo real.</p>
+   ${im(I.loc1,'Página de Locations con todos los locales y el estado de cada canal')}
+   ${cta('👁','Explóralo tú mismo','Abre Locations en Deliverect. ¿Cuántos locales tienes activos? ¿Hay alguno en Busy Mode o cerrado?','Abrir Locations','https://frontend.deliverect.com/locations')}
+   ${links(['https://help.deliverect.com/en/articles/7978972-use-busy-mode-to-temporarily-delay-orders-or-close-a-location','Artículo: Busy Mode y cierre de local'],['https://help.deliverect.com/en/articles/7979080-add-a-location','Añadir un nuevo local'])}`
+  },
+  {t:'Gestionar canales de un local',
+   b:`<ul class="sl">
+    <li>Ve a <strong>Locations</strong> en el menú lateral.</li>
+    <li>Localiza el establecimiento y expándelo.</li>
+    <li>Cada canal tiene botones propios para actuar de forma individual.</li>
+    <li><strong>Open all / Close all</strong> afectan a todos los canales del local a la vez.</li>
+   </ul>
+   <div class="ig">
+    <img src="${I.loc2}" alt="Expandir local" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+    <img src="${I.loc3}" alt="Botones por canal" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+   </div>
+   <div class="hic">Expandir local → controles individuales por canal</div>
+   <div class="ca"><strong>Control granular:</strong> Puedes cerrar solo Glovo y dejar Uber Eats activo usando los botones individuales de cada canal.</div>
+   ${links(['https://help.deliverect.com/en/articles/7978973-add-custom-tags-to-your-channels','Custom tags en canales'],['https://help.deliverect.com/en/articles/7978972-use-busy-mode-to-temporarily-delay-orders-or-close-a-location','Abrir y cerrar locales'])}`
+  },
+  {quiz:true,t:'Quiz — Locations',q:'Si quieres cerrar únicamente Glovo manteniendo Uber Eats activo, ¿qué debes hacer?',
+   opts:["Pulsar 'Close all stores'","Usar los controles individuales del canal de Glovo","Cambiar los horarios de apertura","Archivar el menú de Glovo"],
+   correct:1,fb:'✓ Correcto. Los controles individuales de cada canal permiten actuar sobre uno solo sin afectar al resto.'}
+ ]
+},
+{id:2,ic:'busy',t:'Busy Mode',s:'Gestionar la carga operativa',
+ ls:[
+  {t:'¿Qué es Busy Mode?',
+   b:`<p>Busy Mode te permite reaccionar rápido cuando la cocina está saturada, sin perder visibilidad en los rankings de las plataformas.</p>
+   <div class="br">
+    <div class="bb bbo">🟠 Busy Mode<br><small style="font-weight:400">Más tiempo de prep</small></div>
+    <div class="bb bbr">🔴 Close store<br><small style="font-weight:400">Sin pedidos nuevos</small></div>
+   </div>
+   ${im(I.loc3,'Vista de canales con botones de Busy Mode y Close store')}
+   <div class="ca w"><strong>⚠ No se reabre automáticamente:</strong> El local permanece cerrado hasta que lo abras manualmente, incluso al inicio del día siguiente.</div>
+   ${links(['https://help.deliverect.com/en/articles/7978972-use-busy-mode-to-temporarily-delay-orders-or-close-a-location','Artículo completo: Busy Mode'],['https://help.deliverect.com/en/articles/7979072-dma-open-close-or-activate-busy-mode-for-your-location','Busy Mode desde la DMA'])}`
+  },
+  {t:'Cómo activar Busy Mode',
+   b:`<ul class="sl">
+    <li>Ve a <strong>Locations</strong> y expande el local.</li>
+    <li>Pulsa el botón naranja <span class="tg tgo">Busy Mode</span> del canal que necesites.</li>
+    <li>Elige el tiempo extra de preparación en la ventana emergente.</li>
+    <li>Pulsa <strong>Confirm</strong>. Los nuevos pedidos llegarán con ese tiempo adicional.</li>
+   </ul>
+   <div class="ig">
+    <img src="${I.loc2}" alt="Expandir local" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+    <img src="${I.bm1}" alt="Popup tiempo extra" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+   </div>
+   <div class="hic">Expandir el local → selector de tiempo extra</div>
+   <div class="ca w"><strong>Penalización:</strong> El uso frecuente puede reducir tu posición en los rankings de las plataformas. Úsalo solo cuando sea necesario.</div>
+   ${cta('⏱','Pruébalo ahora','Entra en un canal que no esté recibiendo pedidos activos y activa Busy Mode para ver cómo funciona el selector de tiempo.','Abrir Locations','https://frontend.deliverect.com/locations')}`
+  },
+  {t:'Cómo reabrir el local',
+   b:`<ul class="sl">
+    <li>Ve a <strong>Locations</strong> y expande el local.</li>
+    <li>Pulsa <span class="tg tgg">Open store</span> en el canal a reabrir.</li>
+    <li>O usa <strong>Open all stores</strong> para reabrir todos a la vez.</li>
+   </ul>
+   <div class="br"><div class="bb bbg">✓ Open store — reabrir este canal</div></div>
+   <div class="ca"><strong>Alerta de 2 horas:</strong> Activa "Enable busy mode notification" en Ajustes → Notifications para recibir un aviso si el local lleva más de 2 horas cerrado.</div>
+   ${links(['https://help.deliverect.com/en/articles/7978972','Documentación completa Busy Mode'])}`
+  },
+  {quiz:true,t:'Quiz — Busy Mode',q:'¿Qué ocurre al inicio del día siguiente si cerraste el local con Busy Mode la noche anterior?',
+   opts:['Se reabre automáticamente según los horarios','Permanece cerrado hasta que lo abras manualmente','Deliverect envía un email y lo reabre solo','Los pedidos acumulados se envían al reabrir'],
+   correct:1,fb:'✓ Correcto. Deliverect nunca reabre el local automáticamente. Siempre debes hacerlo tú manualmente.'}
+ ]
+},
+{id:3,ic:'snz',t:'Snooze',s:'Pausar productos temporalmente',
+ ls:[
+  {t:'¿Qué es el Snooze?',
+   b:`<p>El Snooze permite desactivar temporalmente un producto o modificador en los canales sin eliminarlo del menú. Perfecto para roturas de stock puntuales.</p>
+   ${im(I.sn1,'Página de Snooze bajo Operations en el menú lateral')}
+   <div style="margin:12px 0">
+    <div class="srow"><span>🍔 Hamburguesa Especial</span><span class="tg tgg">Disponible</span></div>
+    <div class="srow"><span>🍟 Patatas XXL</span><span class="tg tgo">Snoozed — 2h</span></div>
+    <div class="srow"><span>🥗 Ensalada César</span><span class="tg tgr">Snoozed — indefinido</span></div>
+   </div>
+   ${links(['https://help.deliverect.com/en/articles/7979011-mark-an-item-out-of-stock','Marcar ítem como agotado'],['https://help.deliverect.com/en/articles/9220097-tutorial-videos','Vídeo: Snooze de productos'])}`
+  },
+  {t:'Cómo snooze un producto',
+   b:`${yt('-1aWexXYeOU','Tutorial oficial Deliverect: Snooze Products')}
+   <ul class="sl">
+    <li>Ve a <strong>Operations → Snooze</strong>.</li>
+    <li>Selecciona el local y el menú.</li>
+    <li>Localiza el producto y pulsa el icono 🕐 junto a él.</li>
+    <li>Elige duración: 1h, 2h, 4h, indefinido o hasta una fecha.</li>
+    <li>Confirma. El producto desaparece de los canales de inmediato.</li>
+   </ul>
+   <div class="ig">
+    <img src="${I.sn3}" alt="Icono reloj" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+    <img src="${I.sn4}" alt="Opciones duración" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+   </div>
+   ${cta('🧪','Practica el snooze','Busca un producto que no sea crítico en tu menú y snoozealo 1 hora para ver cómo funciona el flujo completo.','Ir a Operations','https://frontend.deliverect.com/operations')}`
+  },
+  {t:'Snooze masivo y modificadores',
+   b:`${im(I.sn5,'Selección múltiple de productos para snooze masivo')}
+   <ul class="sl">
+    <li>Pulsa <strong>Select Products To Snooze</strong>.</li>
+    <li>Marca los checkboxes de los productos que quieras pausar.</li>
+    <li>Elige la duración en la barra inferior y confirma.</li>
+   </ul>
+   <div class="ca w"><strong>Modificadores:</strong> Snooze de "Extra queso" lo desactiva en <em>todos</em> los productos que lo contienen. Si el ítem existe como producto Y modificador, debes snoozear ambos de forma independiente.</div>
+   ${links(['https://help.deliverect.com/en/articles/7979011-mark-an-item-out-of-stock','Artículo: items agotados'])}`
+  },
+  {quiz:true,t:'Quiz — Snooze',q:'Si snooze el modificador "Extra queso", ¿qué ocurre?',
+   opts:['Solo afecta al producto que seleccionaste','Todos los productos con ese modificador vinculado quedan afectados','Los modificadores no se pueden snooze','Solo afecta al canal principal'],
+   correct:1,fb:'✓ Correcto. Un modificador compartido afecta a todos los productos que lo contienen al snoozarlo.'}
+ ]
+},
+{id:4,ic:'hrs',t:'Horarios',s:'Configurar opening hours',
+ ls:[
+  {t:'Acceder y configurar horarios',
+   b:`<p>Los horarios de apertura determinan cuándo tu local aparece activo en los canales. Se accede desde <strong>Locations → Opening hours</strong>.</p>
+   ${yt('GKued_YVPoQ','Tutorial oficial: Configure Opening Hours')}
+   <div class="ig">
+    <img src="${I.oh1}" alt="Acceso a Opening Hours" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+    <img src="${I.oh2}" alt="Selección de local" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+   </div>
+   <div class="hic">Acceso a Opening Hours → selección del local a configurar</div>
+   ${links(['https://help.deliverect.com/en/articles/7978981-configure-opening-hours-for-a-location','Artículo completo: Opening Hours'],['https://help.deliverect.com/en/articles/9220097-tutorial-videos','Vídeo: special hours (horarios festivos)'])}`
+  },
+  {t:'Duplicar y guardar horarios',
+   b:`<ul class="sl">
+    <li>Activa el toggle del día y añade apertura y cierre.</li>
+    <li>Usa <strong>+</strong> para añadir pausa al mediodía.</li>
+    <li>Usa <strong>Duplicate</strong> para copiar al día siguiente.</li>
+    <li>Pulsa <strong>Close</strong> para guardar — Deliverect publica automáticamente en la mayoría de canales.</li>
+   </ul>
+   <div class="ig">
+    <img src="${I.oh3}" alt="Duplicar" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+    <img src="${I.oh5}" alt="Guardar" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+   </div>
+   <div class="hic">Duplicar horario al siguiente día → confirmar y guardar</div>
+   <div class="ca w"><strong>Cambios de menú pendientes:</strong> Guardar horarios puede publicar ediciones de menú pendientes. El sistema te avisa antes de continuar.</div>
+   <div class="ca"><strong>Verificación:</strong> Tras guardar, revisa <strong>Operations → Reports</strong>. Si ves "update store opening hours" se aplicó directo; si ves "menu publish" se publicó vía menú.</div>
+   ${cta('📅','Revisa tus horarios ahora','Entra en Opening Hours de tu local principal y comprueba que todos los días están configurados correctamente, incluyendo festivos.','Abrir Opening Hours','https://frontend.deliverect.com/locations')}
+   ${links(['https://help.deliverect.com/en/articles/7978981','Configurar horarios especiales (festivos)'])}`
+  },
+  {quiz:true,t:'Quiz — Horarios',q:'¿Cómo verificas que el cambio de horario se publicó correctamente?',
+   opts:['Recibes un email automático de confirmación','Compruebas en Operation Reports si aparece "update store opening hours" o "menu publish"','El canal te manda una notificación push','Solo puedes saberlo mirando la app de cada plataforma'],
+   correct:1,fb:'✓ Correcto. Operation Reports es el registro definitivo de todas las acciones publicadas en Deliverect.'}
+ ]
+},
+{id:5,ic:'menu',t:'Menús',s:'Crear y gestionar la carta',
+ ls:[
+  {t:'Estructura de un menú',
+   b:`<p>Un menú es la carta que ven los clientes en los canales. Se compone de <strong>categorías</strong> que agrupan <strong>productos</strong> con sus modificadores.</p>
+   ${im(I.mn1,'Página principal de Menus con todos los menús y su estado')}
+   ${cta('📋','Explora tus menús activos','Abre la sección Menus y revisa cuántos menús tienes, en qué locales están asignados y cuándo fue la última publicación.','Abrir Menus','https://frontend.deliverect.com/menus')}
+   ${links(['https://help.deliverect.com/en/collections/4072030-menus-for-restaurants','Toda la documentación de Menús'])}`
+  },
+  {t:'Crear y publicar un menú',
+   b:`${yt('e3sdqCRA2pc','Tutorial oficial: Publish a Menu')}
+   <ul class="sl">
+    <li>Pulsa <strong>Create menu</strong> — elige crear desde cero o importar desde canal/TPV.</li>
+    <li>Rellena nombre, local, tipo de pedido e imagen.</li>
+    <li>Añade categorías con <strong>Create category</strong>.</li>
+    <li>Dentro de cada categoría pulsa <strong>Add item</strong> y busca productos.</li>
+    <li>Cuando termines pulsa <strong>Publish menus</strong> → selecciona canales → confirma.</li>
+   </ul>
+   <div class="ig">
+    <img src="${I.mn3}" alt="Opciones de creación" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+    <img src="${I.mn4}" alt="Formulario de menú" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+   </div>
+   ${im(I.mn5,'Añadir categorías y productos al menú creado')}
+   <div class="ca w"><strong>Recuerda:</strong> Editar el menú NO lo publica automáticamente. Siempre debes hacer clic en <strong>Publish menus</strong>.
+   </div>
+   ${links(['https://help.deliverect.com/en/articles/7978980-create-or-import-a-menu','Crear o importar un menú'],['https://help.deliverect.com/en/articles/7978992-publish-a-menu','Publicar un menú'])}`
+  },
+  {t:'Personalización por tienda o canal',
+   b:`<p>La función <strong>Customization</strong> permite variaciones de precio, nombre, visibilidad e imagen para locales, canales o tipos de pedido — sin duplicar el menú.</p>
+   ${yt('SFoesEhfvBA','Tutorial: Customize Product Prices for Channels')}
+   ${im(I.mc1,'Editor de menú con panel de personalización por canal o local')}
+   <ul class="sl">
+    <li>Selecciona el producto en el editor de menú.</li>
+    <li>Pulsa el icono de <strong>custom fields</strong> junto al campo a personalizar.</li>
+    <li>Elige <strong>+ Create</strong> y define a qué aplica: location, channel, custom tag u order type.</li>
+    <li>Introduce el valor (precio, nombre, visibilidad…).</li>
+    <li>Publica el menú para activar los cambios.</li>
+   </ul>
+   ${im(I.mc2,'Seleccionar un producto para configurar campos personalizados')}
+   <div class="ca"><strong>Casos habituales:</strong> Precio +15% en Uber Eats · Ocultar producto en local concreto · Nombre distinto por canal · Imagen diferente por tipo de pedido.</div>
+   ${cta('🎨','Prueba la personalización','Elige un producto de tu menú, entra en Customization y crea una variación de precio para un canal concreto (sin publicar si no quieres).','Abrir editor de menú','https://frontend.deliverect.com/menus')}
+   ${links(['https://help.deliverect.com/en/articles/7978996-customize-a-menu-for-a-location-channel-custom-tag-or-order-type','Artículo: Customization completo'],['https://www.youtube.com/embed/eQeTRM5k4qg','Vídeo: precios por local'])}`
+  },
+  {quiz:true,t:'Quiz — Menús',q:'¿Para qué sirve la función Customization en el editor de menús?',
+   opts:['Para crear un menú duplicado con precios distintos','Para adaptar precio, nombre o visibilidad por local, canal o tipo de pedido sin duplicar el menú','Para publicar el menú automáticamente en todos los canales','Para importar el menú desde el TPV'],
+   correct:1,fb:'✓ Correcto. Customization permite adaptar campos específicos sin necesidad de duplicar el menú completo.'}
+ ]
+},
+{id:6,ic:'ana',t:'Analítica',s:'Datos y rendimiento del negocio',
+ ls:[
+  {t:'El panel de Analytics',
+   b:`<p>La sección <strong>Analytics</strong> centraliza el rendimiento de todos tus canales y locales. Accede desde el menú lateral → Analytics.</p>
+   ${im(I.an5,'Las pestañas del panel: Main, Menu items, Orders, Reviews, Insights, Order issues')}
+   <div class="gc">
+    <div class="gcard"><div style="font-size:11px;font-weight:600;color:var(--green)">Main</div><div class="gl">Resumen general de ingresos y pedidos</div></div>
+    <div class="gcard"><div style="font-size:11px;font-weight:600;color:var(--green)">Menu items</div><div class="gl">Productos más y menos vendidos</div></div>
+    <div class="gcard"><div style="font-size:11px;font-weight:600;color:var(--green)">Orders</div><div class="gl">Comparativa horaria y heatmap</div></div>
+    <div class="gcard"><div style="font-size:11px;font-weight:600;color:var(--green)">Reviews</div><div class="gl">Reseñas de todas las plataformas</div></div>
+    <div class="gcard"><div style="font-size:11px;font-weight:600;color:var(--green)">Insights</div><div class="gl">Cierres, snooze, pedidos fallidos</div></div>
+    <div class="gcard"><div style="font-size:11px;font-weight:600;color:var(--green)">Order issues</div><div class="gl">Incidencias y cancelaciones</div></div>
+   </div>
+   ${cta('📊','Explora tus datos ahora','Abre Analytics y revisa la pestaña Main. ¿Cuál es el canal que más pedidos genera esta semana? ¿Y el ticket medio?','Abrir Analytics','https://frontend.deliverect.com/analytics')}
+   ${links(['https://help.deliverect.com/en/articles/7978951-introduction-to-your-dashboard','Introducción al dashboard'],['https://help.deliverect.com/en/articles/7978952-track-performance-using-the-analytics-page','Rastrear el rendimiento'])}`
+  },
+  {t:'Pestaña Main — Filtros y gráficas',
+   b:`<p>La pestaña principal muestra la evolución de ingresos, pedidos y ticket medio con comparativas por período, canal o local.</p>
+   ${im(I.an1,'Filtros de Analytics: por local, canal, custom tag y fecha — se pueden combinar')}
+   ${im(I.an2,'Gráfica principal con revenue, orders y average order value')}
+   <ul class="sl">
+    <li><strong>Revenue:</strong> Ingresos netos (total menos delivery fee, propinas y service charges; impuestos incluidos).</li>
+    <li><strong>Orders:</strong> Volumen de pedidos — muestra picos y valles horarios.</li>
+    <li><strong>Average Order Value:</strong> Ticket medio por pedido.</li>
+    <li><strong>Comparativas:</strong> Puedes comparar contra el período anterior o entre locales y canales.</li>
+   </ul>
+   ${links(['https://help.deliverect.com/en/articles/7978950-view-a-sales-comparison','Sales comparison: comparar períodos'],['https://help.deliverect.com/en/articles/7978958-view-order-statistics-and-comparisons','Order statistics y heatmap horario'])}`
+  },
+  {t:'Revenue, Orders y exportar datos',
+   b:`<div class="ig">
+    <img src="${I.an3}" alt="Gráfica de revenue" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+    <img src="${I.an4}" alt="Gráfica de orders" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+   </div>
+   <div class="hic">Evolución de ingresos (izq.) y volumen de pedidos (der.) por período</div>
+   <div class="ca"><strong>Exportar a CSV:</strong> Descarga los datos de Analytics con el botón de exportación para analizarlos en Excel. También puedes configurar reportes automáticos por email desde la sección de Alerts.</div>
+   <div class="ca"><strong>Pestaña Insights:</strong> Muestra en tiempo real: pedidos fallidos, cancelaciones, locales cerrados/en busy mode e ítems snoozed. Muy útil como resumen operativo de turno.</div>
+   ${cta('🔍','Analiza la última semana','Aplica el filtro de los últimos 7 días y compara canales. ¿Qué canal tiene el ticket medio más alto?','Abrir Analytics','https://frontend.deliverect.com/analytics')}
+   ${links(['https://help.deliverect.com/en/articles/7978953-view-insights','Ver Insights'],['https://help.deliverect.com/en/articles/7978960-view-refund-reasons','Ver razones de reembolso'],['https://help.deliverect.com/en/articles/8592076-set-up-and-manage-alerts','Configurar alertas automáticas'])}`
+  },
+  {quiz:true,t:'Quiz — Analítica',q:'¿Qué métrica indica cuánto pagan los clientes de media por pedido?',
+   opts:['Revenue','Orders','Average Order Value','Order issues'],
+   correct:2,fb:'✓ Correcto. Average Order Value (ticket medio) mide el importe promedio por pedido y es clave para evaluar el impacto de promociones.'}
+ ]
+},
+{id:7,ic:'dma',t:'DMA',s:'Delivery Manager App',
+ ls:[
+  {t:'¿Qué es la DMA y para qué sirve?',
+   b:`<p>La <strong>Delivery Manager App (DMA)</strong> es la app de Deliverect para tablet o smartphone. Diseñada para operar el día a día sin necesidad del panel web.</p>
+   ${yt('V2vONjUF950','Tutorial oficial DMA: Manage Orders')}
+   <div class="gc">
+    <div class="gcard"><div style="font-size:18px;margin-bottom:4px">📱</div><div class="gl" style="font-weight:600;color:var(--t1)">iOS y Android</div><div class="gl">iPad, iPhone y Android 9+</div></div>
+    <div class="gcard"><div style="font-size:18px;margin-bottom:4px">🖨</div><div class="gl" style="font-weight:600;color:var(--t1)">Impresión</div><div class="gl">Star y Epson compatibles</div></div>
+    <div class="gcard"><div style="font-size:18px;margin-bottom:4px">🔔</div><div class="gl" style="font-weight:600;color:var(--t1)">Alertas</div><div class="gl">Notificaciones de pedidos nuevos</div></div>
+    <div class="gcard"><div style="font-size:18px;margin-bottom:4px">🔄</div><div class="gl" style="font-weight:600;color:var(--t1)">Sincronizado</div><div class="gl">En tiempo real con el panel web</div></div>
+   </div>
+   <div class="ca"><strong>Descarga:</strong> Busca "Deliverect: online order hub" en App Store o Google Play. Inicia sesión con tu cuenta Deliverect y selecciona el local.</div>
+   ${links(['https://help.deliverect.com/en/articles/7979065-dma-app-requirements-and-installation','Requisitos e instalación DMA'],['https://help.deliverect.com/en/collections/4072040-delivery-manager-app','Centro de ayuda DMA completo'])}`
+  },
+  {t:'Gestión de pedidos en la DMA',
+   b:`${im(I.dm1,'Vista de pedidos en la DMA: New, In Progress, Finished, Scheduled')}
+   <ul class="sl">
+    <li><strong>New:</strong> Pedidos pendientes de aceptar.</li>
+    <li><strong>In Progress:</strong> Aceptados, en preparación.</li>
+    <li><strong>Finished:</strong> Preparados o entregados.</li>
+    <li><strong>Scheduled:</strong> Programados para más tarde.</li>
+   </ul>
+   ${im(I.dm2,'Detalle de pedido: ID, canal, estado, productos, precio y notas del cliente')}
+   ${links(['https://help.deliverect.com/en/articles/7979073-dma-manage-your-orders','Artículo: gestionar pedidos en la DMA'],['https://help.deliverect.com/en/articles/7979100-dma-using-the-app-when-you-have-a-pos','DMA con TPV integrado'])}`
+  },
+  {t:'Gestión de locales y ajustes',
+   b:`${yt('ogZ2ysD30bY','Tutorial oficial DMA: Manage Stores')}
+   <div class="ig">
+    <img src="${I.dm4}" alt="Botones Open/Close all" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+    <img src="${I.dm5}" alt="Control individual" loading="lazy" onerror="this.style.display='none'" style="border-radius:8px;border:1px solid #E5E7EB">
+   </div>
+   <div class="hic">Botones globales Open/Close all · Control individual por canal</div>
+   <p><strong>Ajustes disponibles en la DMA</strong> (pestaña Settings):</p>
+   <ul class="sl">
+    <li><strong>Allow indefinite snoozing:</strong> Activa para poder snooze productos sin límite de tiempo.</li>
+    <li><strong>Automatically print ticket:</strong> Imprime el ticket automáticamente al aceptar un pedido.</li>
+    <li><strong>Enable busy mode notification:</strong> Aviso si un local lleva más de 2h cerrado.</li>
+    <li><strong>Change opening hours:</strong> Puedes ajustar los horarios directamente desde la app.</li>
+    <li><strong>Set new passcode:</strong> Bloqueo por PIN tras 10 minutos de inactividad.</li>
+   </ul>
+   <div class="ca"><strong>Tip de cocina:</strong> Con TPV integrado, la DMA en la cocina permite al personal seguir pedidos, snooze productos y activar busy mode sin tener acceso al TPV del salón.</div>
+   ${links(['https://help.deliverect.com/en/articles/7979096-dma-change-settings','Todos los ajustes de la DMA'],['https://help.deliverect.com/en/articles/7979068-dma-set-up-a-printer','Configurar impresora en DMA'])}`
+  },
+  {quiz:true,t:'Quiz — DMA',q:'¿Cuál de estas acciones NO puedes realizar desde la DMA?',
+   opts:['Aceptar pedidos nuevos','Activar Busy Mode en un canal','Crear un menú nuevo desde cero','Snooze un producto temporalmente'],
+   correct:2,fb:'✓ Correcto. La creación de menús se realiza exclusivamente desde el panel web. La DMA está optimizada para la operativa diaria, no para la configuración de menús.'}
+ ]
+}
+];
+
+// ── STATE ──
+let un='',ue='',cm=0,cs=0;
+const dm=new Set(),ds={},qa={};
+
+function sv(){try{localStorage.setItem('dlv_v4',JSON.stringify({un,ue,cm,cs,dm:[...dm],ds:Object.fromEntries(Object.entries(ds).map(([k,v])=>[k,[...v]])),qa}))}catch(e){}}
+function ld(){try{const r=localStorage.getItem('dlv_v4');if(!r)return false;const s=JSON.parse(r);un=s.un||'';ue=s.ue||'';cm=s.cm||0;cs=s.cs||0;(s.dm||[]).forEach(m=>dm.add(m));Object.entries(s.ds||{}).forEach(([k,v])=>{ds[k]=new Set(v)});Object.assign(qa,s.qa||{});return!!un}catch(e){return false}}
+
+function goS(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active')}
+
+function startTraining(){const n=document.getElementById('rn').value.trim();if(!n){alert('Por favor, introduce tu nombre.');return}un=n;ue=document.getElementById('re').value.trim();sv();iM();}
+function iM(){document.getElementById('tbn').textContent=un;rSB();rC();goS('sm');}
+
+function rSB(){
+  const p=Math.round((dm.size/M.length)*100);
+  document.getElementById('pf').style.width=p+'%';
+  document.getElementById('ppct').textContent=p+'%';
+  document.getElementById('tpp').textContent=dm.size+' / '+M.length;
+  document.getElementById('sbn').innerHTML=M.map(m=>{
+    const done=dm.has(m.id),active=m.id===cm;
+    return`<div class="ni${active?' active':''}" onclick="gM(${m.id})">
+      <div class="nic">${IC[m.ic]||IC.home}</div>
+      <div class="nil"><span class="nit">${m.t}</span></div>
+      <div class="nik${done?' done':''}">${done?'✓':''}</div>
+    </div>`;
+  }).join('');
+}
+
+function rC(){
+  const mod=M[cm],l=mod.ls[cs],tot=mod.ls.length;
+  const dots=mod.ls.map((_,i)=>{const d=ds[cm]&&ds[cm].has(i);return`<div class="dot${i===cs?' active':''}${d?' done':''}" onclick="gStep(${i})"></div>`;}).join('');
+  let body='';
+  if(l.quiz){
+    const key=cm+'-'+cs,ans=qa[key]!==undefined,ch=qa[key];
+    body=`<div class="qb"><div class="qq">${l.q}</div>
+    ${l.opts.map((o,i)=>{let c='';if(ans&&i===l.correct)c=' ok';else if(ans&&i===ch&&i!==l.correct)c=' ko';return`<button class="qo${c}" onclick="ansQ(${i})" ${ans?'disabled':''}>${o}</button>`;}).join('')}
+    ${ans?`<div class="qf ${ch===l.correct?'ok':'ko'}">${l.fb}</div>`:''}</div>`;
+  }else{body=l.b;}
+  const isF=cs===0&&cm===0,isLL=cs===tot-1,isLM=cm===M.length-1;
+  const nl=isLL?(isLM?'Ver mi certificado →':'Siguiente módulo →'):'Continuar →';
+  document.getElementById('ci').innerHTML=`
+    <div class="ey">${mod.t} · Paso ${cs+1} de ${tot}</div>
+    <div class="mt">${mod.t}</div>
+    <div class="ms">${mod.s}</div>
+    <div class="sd">${dots}</div>
+    <div class="lc">
+      <div class="lch"><h3>${l.t}</h3></div>
+      <div class="lcb">${body}</div>
+      <div class="lcn">
+        <button class="bn" onclick="pv()" ${isF?'disabled':''}>← Anterior</button>
+        <button class="bf" onclick="nx()">${nl}</button>
+      </div>
+    </div>`;
+  document.querySelector('.cw').scrollTop=0;
+}
+
+function mS(){if(!ds[cm])ds[cm]=new Set();ds[cm].add(cs);if(ds[cm].size>=M[cm].ls.length)dm.add(cm);sv();}
+function nx(){mS();const m=M[cm];if(cs<m.ls.length-1){cs++;}else if(cm<M.length-1){cm++;cs=0;}else{showCert();return;}rSB();rC();}
+function pv(){if(cs>0){cs--;}else if(cm>0){cm--;cs=M[cm].ls.length-1;}rSB();rC();}
+function gM(i){cm=i;cs=0;rSB();rC();}
+function gStep(i){mS();cs=i;rC();}
+function ansQ(ch){const key=cm+'-'+cs;if(qa[key]!==undefined)return;qa[key]=ch;if(ch===M[cm].ls[cs].correct)mS();sv();rC();}
+function showCert(){
+  document.getElementById('cn').textContent=un;
+  document.getElementById('cd').textContent='Completado el '+new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('cm').innerHTML=M.map(m=>`<span class="cbadge">${m.t}</span>`).join('');
+  goS('sc');
+}
+if(ld()&&un)iM();
+</script>
+</body>
+</html>
